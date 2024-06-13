@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Root page</title>
+</head>
+<body onload="updateStorage();">
+<div>
+    <p>
+        <strong>
+            Accumulated hits for Local Storage:
+        </strong>
+    </p>
+    <p id="localcounter"></p>
+</div>
+<div>
+    <p>
+        <strong>
+            Accumulated hits for Session Storage:
+        </strong>
+    </p>
+    <p id="sessioncounter"></p>
+</div>
+<script type="text/javascript">
+    function updateStorage(){
+        let s1 = localStorage.getItem('localinfo');
+        let s2 = sessionStorage.getItem('sessioninfo');
+        if (!s1) s1=0;
+        s1++;
+        if (!s2) s2=0;
+        s2++;
+        updateCounter(s1, "localcounter");
+        updateCounter(s2, "sessioncounter");
+        localStorage.setItem('localinfo', s1);
+        sessionStorage.setItem('sessioninfo', s2);
+    }
+    function updateCounter(s, id){
+        let elem=document.getElementById(id);
+        elem.innerHTML=s;
+    }
+</script>
+
+</body>
+</html>
